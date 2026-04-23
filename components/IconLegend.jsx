@@ -113,6 +113,51 @@ export default function IconLegend({ visible, onDismiss }) {
           Here&apos;s what the icons and badges mean throughout the guide.
         </p>
 
+        <div
+          style={{
+            background: "#eff6ff",
+            border: "2px solid #2563eb",
+            borderRadius: 8,
+            padding: "12px 14px",
+            marginBottom: 16,
+          }}
+        >
+          <div
+            style={{
+              fontSize: 13,
+              fontWeight: 700,
+              color: "#1e40af",
+              marginBottom: 4,
+            }}
+          >
+            Code Examples &amp; Claude Prompts
+          </div>
+          <p
+            style={{
+              fontSize: 12,
+              color: "#1e3a5f",
+              margin: 0,
+              lineHeight: 1.5,
+            }}
+          >
+            Many tools include expandable <strong>code examples</strong> you can
+            copy directly into your project, and{" "}
+            <strong>Claude Code prompts</strong> &mdash; fill-in-the-blank
+            templates you can paste into{" "}
+            <a
+              href="https://claude.ai/code"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "#2563eb", textDecoration: "underline" }}
+            >
+              Claude Code
+            </a>{" "}
+            to get a working implementation without writing code yourself. Look
+            for the &ldquo;Show code example&rdquo; and &ldquo;Get started with
+            Claude Code&rdquo; links on tool cards.
+          </p>
+        </div>
+
         <div style={{ marginBottom: 16 }}>
           <div
             style={{
