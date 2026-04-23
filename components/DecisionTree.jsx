@@ -6,10 +6,15 @@ import Breadcrumbs from "./Breadcrumbs";
 import ParadigmBanner, { InfoBox } from "./ParadigmBanner";
 import QuestionNode from "./QuestionNode";
 import TerminalNode from "./TerminalNode";
+import IconLegend from "./IconLegend";
 
 export default function DecisionTree() {
   const [path, setPath] = useState(["root"]);
   const [votes, setVotes] = useState({});
+  const [showLegend, setShowLegend] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return !localStorage.getItem("icon_legend_dismissed");
+  });
 
   const id = path[path.length - 1];
   const node = NODES[id];
@@ -17,6 +22,11 @@ export default function DecisionTree() {
   const isRoot = id === "root";
 
   const nav = useCallback((n) => setPath((p) => [...p, n]), []);
+
+  const dismissLegend = useCallback(() => {
+    localStorage.setItem("icon_legend_dismissed", "1");
+    setShowLegend(false);
+  }, []);
 
   // Fetch vote counts on mount
   useEffect(() => {
@@ -55,12 +65,14 @@ export default function DecisionTree() {
         padding: 16,
       }}
     >
+      <IconLegend visible={showLegend} onDismiss={dismissLegend} />
       <div
         style={{
           textAlign: "center",
           marginBottom: 18,
           paddingBottom: 14,
           borderBottom: "1px solid #e2e8f0",
+          position: "relative",
         }}
       >
         <h1 style={{ fontSize: 20, fontWeight: 700, color: "#1e293b", margin: 0 }}>
@@ -69,6 +81,29 @@ export default function DecisionTree() {
         <p style={{ fontSize: 11, color: "#94a3b8", margin: "3px 0 0" }}>
           AI Clinic Series
         </p>
+        <button
+          onClick={() => setShowLegend(true)}
+          title="Icon guide"
+          style={{
+            position: "absolute",
+            right: 0,
+            top: 0,
+            width: 28,
+            height: 28,
+            borderRadius: 14,
+            border: "1px solid #e2e8f0",
+            background: "#f8fafc",
+            color: "#64748b",
+            fontSize: 14,
+            fontWeight: 700,
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          ?
+        </button>
       </div>
 
       {cc && (

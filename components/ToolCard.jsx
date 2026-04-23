@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { getSessionId } from "@/lib/session";
+import { TAG_DEFINITIONS } from "@/data/nodes";
 
 function renderPromptWithPlaceholders(promptStr) {
   return promptStr.split(/({{[^}]+}})/g).map((part, i) => {
@@ -129,11 +130,45 @@ export default function ToolCard({ tool, index, section, catColor, nodeId, voteD
             RECOMMENDED
           </span>
         )}
+        {tool.tags?.includes("new") && (
+          <span
+            style={{
+              fontSize: 9,
+              fontWeight: 700,
+              background: "#2563eb18",
+              color: "#2563eb",
+              padding: "1px 7px",
+              borderRadius: 10,
+            }}
+          >
+            NEW
+          </span>
+        )}
         {tool.pricing && (
           <span style={{ fontSize: 10, color: "#94a3b8" }}>
             💰 {tool.pricing}
           </span>
         )}
+        {tool.tags?.filter(t => t !== "new").map(tag => {
+          const def = TAG_DEFINITIONS[tag];
+          if (!def) return null;
+          return (
+            <span
+              key={tag}
+              style={{
+                fontSize: 9,
+                fontWeight: 600,
+                background: def.color + "14",
+                color: def.color,
+                padding: "1px 6px",
+                borderRadius: 10,
+                whiteSpace: "nowrap",
+              }}
+            >
+              {def.emoji} {def.label}
+            </span>
+          );
+        })}
         <span
           style={{
             display: "inline-flex",
