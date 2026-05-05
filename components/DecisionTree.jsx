@@ -125,8 +125,6 @@ export default function DecisionTree() {
           isRoot={isRoot}
           catColor={cc}
           onSelect={nav}
-          nodeId={id}
-          path={path}
         />
       )}
 
@@ -135,6 +133,7 @@ export default function DecisionTree() {
           node={node}
           catColor={cc}
           nodeId={id}
+          path={path}
           votes={votes}
           onVote={handleVote}
         />

@@ -1,6 +1,7 @@
 import ToolCard from "./ToolCard";
+import FeedbackInput from "./FeedbackInput";
 
-export default function TerminalNode({ node, catColor, nodeId, votes, onVote }) {
+export default function TerminalNode({ node, catColor, nodeId, path, votes, onVote }) {
   return (
     <div>
       <h2 style={{ fontSize: 19, fontWeight: 700, color: "#1e293b", margin: "0 0 6px" }}>
@@ -137,6 +138,14 @@ export default function TerminalNode({ node, catColor, nodeId, votes, onVote }) 
             ⚠️ NOTE
           </div>
           <div style={{ fontSize: 12, color: "#374151", lineHeight: 1.5 }}>{node.note}</div>
+        </div>
+      )}
+      {nodeId.endsWith("_general") && (
+        <div style={{ marginTop: 16 }}>
+          <p style={{ fontSize: 13, color: "#64748b", margin: "0 0 6px" }}>
+            Didn&apos;t find what you were looking for? Tell us what you actually need.
+          </p>
+          <FeedbackInput nodeId={nodeId} path={path} />
         </div>
       )}
     </div>

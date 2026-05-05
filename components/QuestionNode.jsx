@@ -1,11 +1,4 @@
-"use client";
-
-import { useState } from "react";
-import FeedbackInput from "./FeedbackInput";
-
-export default function QuestionNode({ node, isRoot, catColor, onSelect, nodeId, path }) {
-  const [showFeedback, setShowFeedback] = useState(false);
-
+export default function QuestionNode({ node, isRoot, catColor, onSelect }) {
   return (
     <div>
       <h2 style={{ fontSize: 18, fontWeight: 600, color: "#1e293b", margin: "0 0 4px" }}>
@@ -63,34 +56,7 @@ export default function QuestionNode({ node, isRoot, catColor, onSelect, nodeId,
             <span style={{ color: "#cbd5e1", flexShrink: 0 }}>&rarr;</span>
           </button>
         ))}
-
-        {!isRoot && (
-          <button
-            onClick={() => setShowFeedback((s) => !s)}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-              padding: "10px 14px",
-              background: showFeedback ? "#f1f5f9" : "transparent",
-              border: "1px dashed #cbd5e1",
-              borderRadius: 10,
-              cursor: "pointer",
-              textAlign: "left",
-              marginTop: 4,
-            }}
-          >
-            <span style={{ fontSize: 14, flexShrink: 0, opacity: 0.6 }}>?</span>
-            <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 13, fontWeight: 500, color: "#94a3b8" }}>
-                I don&apos;t see what I need
-              </div>
-            </div>
-          </button>
-        )}
       </div>
-
-      {showFeedback && <FeedbackInput nodeId={nodeId} path={path} />}
     </div>
   );
 }
