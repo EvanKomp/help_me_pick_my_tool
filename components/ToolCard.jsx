@@ -29,9 +29,11 @@ function renderPromptWithPlaceholders(promptStr) {
 
 export default function ToolCard({ tool, index, section, catColor, nodeId, voteData, onVote }) {
   const [showCode, setShowCode] = useState(false);
+  const [showData, setShowData] = useState(false);
   const [showPrompt, setShowPrompt] = useState(false);
   const [copied, setCopied] = useState(false);
   const toggleCode = useCallback(() => setShowCode((s) => !s), []);
+  const toggleData = useCallback(() => setShowData((s) => !s), []);
   const togglePrompt = useCallback(() => setShowPrompt((s) => !s), []);
   const cc = catColor || "#2563eb";
 
@@ -254,6 +256,58 @@ export default function ToolCard({ tool, index, section, catColor, nodeId, voteD
             >
               {tool.howto}
             </pre>
+          )}
+        </div>
+      )}
+      {tool.dataNeeded && (
+        <div style={{ marginTop: 4 }}>
+          <button
+            onClick={toggleData}
+            style={{
+              fontSize: 11,
+              color: "#0f766e",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: 0,
+              textDecoration: "underline",
+            }}
+          >
+            {showData ? "▼ Hide data requirements" : "▶ What data do I need?"}
+          </button>
+          {showData && (
+            <div
+              style={{
+                background: "#f0fdfa",
+                border: "1px solid #14b8a6",
+                borderRadius: 6,
+                padding: "10px 12px",
+                marginTop: 4,
+              }}
+            >
+              <div
+                style={{
+                  fontSize: 11,
+                  fontWeight: 700,
+                  color: "#115e59",
+                  marginBottom: 4,
+                  letterSpacing: "0.04em",
+                }}
+              >
+                📋 INPUTS / DATA
+              </div>
+              <div
+                style={{
+                  fontSize: 12,
+                  color: "#1e293b",
+                  lineHeight: 1.5,
+                  whiteSpace: "pre-wrap",
+                  wordBreak: "break-word",
+                }}
+              >
+                {tool.dataNeeded}
+              </div>
+            </div>
           )}
         </div>
       )}

@@ -87,25 +87,6 @@ export default function TerminalNode({ node, catColor, nodeId, path, votes, onVo
         </div>
       )}
 
-      {node.dataNeeded && (
-        <div
-          style={{
-            background: "#fef3c7",
-            border: "1px solid #d97706",
-            borderRadius: 8,
-            padding: "10px 14px",
-            marginTop: 10,
-            marginBottom: 8,
-          }}
-        >
-          <div style={{ fontSize: 11, fontWeight: 700, color: "#92400e", marginBottom: 2 }}>
-            📋 DATA YOU&apos;LL NEED
-          </div>
-          <div style={{ fontSize: 12, color: "#374151", lineHeight: 1.5 }}>
-            {node.dataNeeded}
-          </div>
-        </div>
-      )}
       {node.clinicConnection && (
         <div
           style={{
